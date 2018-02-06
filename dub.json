@@ -1,0 +1,13 @@
+{
+	"name": "vibed-elastic-logger",
+	"authors": [
+		"Emsi"
+	],
+	"dependencies": {
+		"vibe-d": "~>0.8.2"
+	},
+	"description": "Vibe.d logger implementation for ElasticSearch",
+	"copyright": "Copyright © 2018, Emsi",
+	"license": "MIT",
+    "targetType" : "executable"
+}

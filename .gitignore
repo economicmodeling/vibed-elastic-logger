@@ -1,24 +1,14 @@
-# Compiled Object files
-*.o
-*.obj
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Compiled Static libraries
-*.a
-*.lib
-
-# Executables
-*.exe
-
-# DUB
 .dub
 docs.json
 __dummy.html
 docs/
-
-# Code coverage
+vibed-elastic-logger.so
+vibed-elastic-logger.dylib
+vibed-elastic-logger.dll
+vibed-elastic-logger.a
+vibed-elastic-logger.lib
+vibed-elastic-logger-test-*
+*.exe
+*.o
+*.obj
 *.lst
