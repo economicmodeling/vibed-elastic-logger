@@ -219,11 +219,20 @@ private:
             });
     }
 
-    LogEntry[] entries;
+
+    // See constructor docs
     const IndexCreator indexCreator;
+    // See constructor docs
     const Duration maxLogInterval;
-    SysTime lastFlushTime;
+    // See constructor docs
     const ElasticInfo elasticInfo;
+    // Time that the last flush happened
+    SysTime lastFlushTime;
+    // Message queue
+    LogEntry[] entries;
+    // Index into the `entries` buffer.
     size_t logQueueIndex;
+    // True if the logger is currently flushing log info to the server. Prevents
+    // the HTTP request code from causing an infinite recursion.
     bool flushing;
 }
