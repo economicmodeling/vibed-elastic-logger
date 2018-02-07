@@ -104,10 +104,14 @@ class ElasticLogger : Logger
         this.lastFlushTime = Clock.currTime();
         this.elasticInfo = elasticInfo;
         this.logQueueIndex = 0;
+        this.flushing = false;
     }
 
     override void beginLine(ref LogLine line) @safe
     {
+        if (flushing)
+            return;
+
         LogEntry* l = &entries[logQueueIndex];
         l.module_ = line.mod;
         l.function_ = line.func;
@@ -122,6 +126,9 @@ class ElasticLogger : Logger
 
     override void endLine() @safe
     {
+        if (flushing)
+            return;
+
         immutable r = logQueueIndex;
         logQueueIndex++;
         if (logQueueIndex == entries.length || entries[r].lLevel >= LogLevel.critical
@@ -133,6 +140,9 @@ class ElasticLogger : Logger
 
     override void put(scope const(char)[] text) @safe
     {
+        if (flushing)
+            return;
+
         entries[logQueueIndex].buffer.put(text);
     }
 
@@ -155,6 +165,10 @@ private:
     {
         import std.conv : to;
         import std.format : format;
+        import vibe.http.client : requestHTTP, HTTPClientRequest, HTTPClientResponse, HTTPMethod;
+
+        flushing = true;
+        scope(exit) flushing = false;
 
         immutable elasticIndex = indexCreator();
         immutable url = format!"http://%s:%d/%s/%s/_bulk"(elasticInfo.hostName,
@@ -187,12 +201,22 @@ private:
             requestBody.put(`"}`);
             requestBody.put("\n");
         }
+
         version(debug_elastic_logger)
         {
             () @trusted { stderr.writeln("\033[01;33m", requestBody.data, "\033[0m"); }();
         }
+
         logQueueIndex = 0;
         this.lastFlushTime = Clock.currTime();
+        requestHTTP(url,
+            (scope request) {
+                request.method = HTTPMethod.POST;
+                request.writeBody(cast(ubyte[]) requestBody.data, "application/x-ndjson");
+            },
+            (scope response) {
+                response.dropBody();
+            });
     }
 
     LogEntry[] entries;
@@ -201,4 +225,5 @@ private:
     SysTime lastFlushTime;
     const ElasticInfo elasticInfo;
     size_t logQueueIndex;
+    bool flushing;
 }
