@@ -11,3 +11,4 @@ before_install:
 script:
     - dub run vibed-elastic-logger:test
     - curl http://127.0.0.1:9200/vibe_logger_test/_search | grep "Logger test message"
+
