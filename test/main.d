@@ -2,9 +2,9 @@ import vibe_elastic_logger;
 
 void main()
 {
+    import core.time : dur;
     import vibe.core.log : logInfo, registerLogger;
     import vibe_elastic_logger : ElasticInfo, ElasticLogger;
-    import core.time : dur;
 
     ElasticInfo info;
     info.hostName = "127.0.0.1";

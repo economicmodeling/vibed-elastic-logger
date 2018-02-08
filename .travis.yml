@@ -13,5 +13,5 @@ before_install:
     - curl http://127.0.0.1:9200/_cat/health | grep "green"
 script:
     - dub run vibed-elastic-logger:test
-    - curl http://127.0.0.1:9200/vibe_logger_test/_search
+    - curl http://127.0.0.1:9200/vibe_logger_test/messages/_search
     - curl http://127.0.0.1:9200/vibe_logger_test/messages/_search | grep "Logger test message"
