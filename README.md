@@ -1,4 +1,4 @@
-# vibed-elastic-logger
+# vibed-elastic-logger [![CI status](https://travis-ci.org/economicmodeling/vibed-elastic-logger.svg?branch=master)](https://travis-ci.org/economicmodeling/vibed-elastic-logger/)
 ElasticSearch logger implementation for Vibe.d
 
 ## Documentation
