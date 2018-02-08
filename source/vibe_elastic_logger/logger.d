@@ -217,6 +217,7 @@ private:
             (scope response) {
                 version(debug_elastic_logger)
                 {
+                    import vibe.stream.operations : readAllUTF8;
                     () @trusted { stderr.writeln("\033[01;33mStatus code: ", response.statusCode, "\033[0m"); }();
                     () @trusted { stderr.writeln("\033[01;33mStatus code: ", response.bodyReader.readAllUTF8(), "\033[0m"); }();
                 }
