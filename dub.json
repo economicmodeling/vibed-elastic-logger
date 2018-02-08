@@ -6,6 +6,24 @@
 	"dependencies": {
 		"vibe-d": "~>0.8.2"
 	},
+    "targetType": "library",
+    "subPackages": [
+        {
+            "name": "test",
+            "targetType": "executable",
+            "sourcePaths": [
+                "source",
+                "test"
+            ],
+            "importPaths": [
+                "source",
+                "test"
+            ],
+            "dependencies": {
+                "vibe-d": "~>0.8.2"
+            },
+        }
+    ],
 	"description": "Vibe.d logger implementation for ElasticSearch",
 	"copyright": "Copyright © 2018, Emsi",
 	"license": "MIT",
