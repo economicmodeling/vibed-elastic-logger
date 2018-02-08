@@ -1,6 +1,10 @@
 # vibed-elastic-logger
 ElasticSearch logger implementation for Vibe.d
 
+## Documentation
+
+[https://economicmodeling.github.io/vibed-elastic-logger/](Available online here).
+
 ## Example
 
 ```d
