@@ -57,9 +57,9 @@ struct ElasticInfo
 {
     /// Host name for the ElasticSearch server.
     string hostName;
-    // Port for connecting to the ElasticSearch server.
+    /// Port for connecting to the ElasticSearch server.
     ushort portNumber = 9200;
-    // For the "type" that the log messages will be given within an index.
+    /// For the "type" that the log messages will be given within an index.
     string typeName;
 }
 

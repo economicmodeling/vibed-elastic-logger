@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="../style.css"/><script src="../highlight.pack.js"></script>
+<title>ElasticLogger</title>
+<base href="../"/>
+<script src="search.js"></script>
+</head>
+<body><div class="breadcrumbs">
+<table id="results"></table>
+<input type="search" id="search" placeholder="Search" onkeyup="searchSubmit(this.value, event)"/>
+vibe_elastic_logger.<a href="vibe_elastic_logger/logger.html">logger</a>.ElasticLogger</div>
+<pre><code>public class ElasticLogger : Logger
+</code></pre><div class="section">
+ElasticSearch logger implementation.
+</div>
+<div class="section">
+Messages are queued and written to the server when any of the following
+conditions are met:
+<ul><li>The message queue is full.</li>
+<li>The message to be logged has a LogLevel of <pre style="display:inline;" class="d_inline_code">critical</pre> or higher.</li>
+<li>A message is queued to be logged, and more time than the <pre style="display:inline;" class="d_inline_code">maxLogInterval</pre>
+    constructor argument has passed.</li>
+<li>The logger is asked to log the message "Main thread exiting".</li>
+</ul>
+The name of the index that the logger writes messages to is determined by a
+function (the <pre style="display:inline;" class="d_inline_code">indexCreator</pre> constructor argument). This usually returns an
+index name based off of the current time.
+</div>
+<div class="section">
+<h3>Functions</h3>
+<table>
+<tr><td><a href="vibe_elastic_logger/logger.ElasticLogger.this.html">this</a></td><td></td><td></td></tr></table>
+</div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

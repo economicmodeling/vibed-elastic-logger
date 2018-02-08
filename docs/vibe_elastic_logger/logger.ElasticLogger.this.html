@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="../style.css"/><script src="../highlight.pack.js"></script>
+<title>this</title>
+<base href="../"/>
+<script src="search.js"></script>
+</head>
+<body><div class="breadcrumbs">
+<table id="results"></table>
+<input type="search" id="search" placeholder="Search" onkeyup="searchSubmit(this.value, event)"/>
+vibe_elastic_logger.<a href="vibe_elastic_logger/logger.ElasticLogger.html">logger</a>.<a href="vibe_elastic_logger/logger.ElasticLogger.html">ElasticLogger</a>.this</div>
+<pre><code>public this(const ElasticInfo elasticInfo, const IndexCreator indexCreator, const Duration maxLogInterval, const size_t messageQueueSize)
+</code></pre><div class="section">
+<h3>Parameters</h3>
+<table class="params">
+<tr class="param"><td class="paramName">elasticInfo</td><td class="paramDoc">Connection information to use when logging messages.</td></tr>
+<tr class="param"><td class="paramName">indexCreator</td><td class="paramDoc">A function that will return the name of the index to
+        log to.
+</td></tr>
+<tr class="param"><td class="paramName">maxLogInterval</td><td class="paramDoc">If a log message is received and more than this
+        amount of time has passed since the last flush, trigger a flush
+        regardless of the remaining space in the buffer.
+</td></tr>
+<tr class="param"><td class="paramName">messageQueueSize</td><td class="paramDoc">Number of log messages to queue between writes to
+        ElasticSearch.</td></tr>
+</table></div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
