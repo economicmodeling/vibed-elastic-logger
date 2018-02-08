@@ -7,11 +7,12 @@ services:
 before_install:
     - sudo apt-get install -y libevent-dev
     - docker pull docker.elastic.co/elasticsearch/elasticsearch:6.2.0
-    #- docker run -p 9200:9200 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.0&
+    - docker run -d -p 9201:9201 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.0
     - sleep 20
     - docker ps -a
-    - curl http://127.0.0.1:9200/_cat/health | grep "green"
+    - curl http://127.0.0.1:9201/_cat/health | grep "green"
 script:
     - dub run vibed-elastic-logger:test
-    - curl http://127.0.0.1:9200/vibe_logger_test/messages/_search
-    - curl http://127.0.0.1:9200/vibe_logger_test/messages/_search | grep "Logger test message"
+    - sleep 5
+    - curl http://127.0.0.1:9201/vibe_logger_test/messages/_search
+    - curl http://127.0.0.1:9201/vibe_logger_test/messages/_search | grep "Logger test message"
