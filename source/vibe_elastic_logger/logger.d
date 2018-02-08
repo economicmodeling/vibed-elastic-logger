@@ -215,6 +215,10 @@ private:
                 request.writeBody(cast(ubyte[]) requestBody.data, "application/x-ndjson");
             },
             (scope response) {
+                version(debug_elastic_logger)
+                {
+                    () @trusted { stderr.writeln("\033[01;33mStatus code: ", response.statusCode, "\033[0m"); }();
+                }
                 response.dropBody();
             });
     }

@@ -22,6 +22,9 @@
             "dependencies": {
                 "vibe-d": "~>0.8.2"
             },
+            "versions": [
+                "debug_elastic_logger"
+            ]
         }
     ],
 	"description": "Vibe.d logger implementation for ElasticSearch",
