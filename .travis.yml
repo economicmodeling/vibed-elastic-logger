@@ -7,7 +7,7 @@ services:
 before_install:
     - sudo apt-get install -y libevent-dev
     - docker pull docker.elastic.co/elasticsearch/elasticsearch:6.2.0
-    - docker run -p 9201:9201 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.0
+    - docker run -p 9200:9201 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.0&
     - sleep 20
     - docker ps -a
     - curl http://127.0.0.1:9201/_cat/health | grep "green"
