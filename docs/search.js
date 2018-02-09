@@ -4,7 +4,6 @@ var items = [
 {"vibe_elastic_logger.logger.ElasticInfo" : "vibe_elastic_logger/logger.ElasticInfo.html"},
 {"vibe_elastic_logger.logger.ElasticInfo.hostName" : "vibe_elastic_logger/logger.ElasticInfo.hostName.html"},
 {"vibe_elastic_logger.logger.ElasticInfo.portNumber" : "vibe_elastic_logger/logger.ElasticInfo.portNumber.html"},
-{"vibe_elastic_logger.logger.ElasticInfo.typeName" : "vibe_elastic_logger/logger.ElasticInfo.typeName.html"},
 {"vibe_elastic_logger.logger.ElasticLogger" : "vibe_elastic_logger/logger.ElasticLogger.html"},
 {"vibe_elastic_logger.logger.ElasticLogger.this" : "vibe_elastic_logger/logger.ElasticLogger.this.html"},
 ];
