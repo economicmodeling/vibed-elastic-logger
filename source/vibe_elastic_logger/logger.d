@@ -59,8 +59,6 @@ struct ElasticInfo
     string hostName;
     /// Port for connecting to the ElasticSearch server.
     ushort portNumber = 9200;
-    /// The log message's "type" within an index.
-    string typeName;
 }
 
 /**
@@ -171,8 +169,8 @@ private:
         scope(exit) flushing = false;
 
         immutable elasticIndex = indexCreator();
-        immutable url = format!"http://%s:%d/%s/%s/_bulk"(elasticInfo.hostName,
-                elasticInfo.portNumber, elasticIndex, elasticInfo.typeName);
+        immutable url = format!"http://%s:%d/%s/_bulk"(elasticInfo.hostName,
+                elasticInfo.portNumber, elasticIndex);
         version(debug_elastic_logger)
         {
             () @trusted { stderr.writeln("\033[01;33m", url, "\033[0m"); }();
@@ -180,7 +178,9 @@ private:
         auto requestBody = appender!string();
         foreach (ref entry; entries[0 .. logQueueIndex])
         {
-            requestBody.put(`{"index": {}}`);
+            requestBody.put(`{"index": {"_type":"`);
+            requestBody.put(entry.level);
+            requestBody.put(`"}}`);
             requestBody.put("\n");
             requestBody.put(`{"message":"`);
             requestBody.putEscapedString(entry.buffer.data);
@@ -192,8 +192,6 @@ private:
             requestBody.putEscapedString(entry.file);
             requestBody.put(`","line":"`);
             requestBody.put(entry.line.to!string());
-            requestBody.put(`","level":"`);
-            requestBody.put(entry.level);
             requestBody.put(`","fiberID":"`);
             requestBody.put(entry.fiberID.to!string());
             requestBody.put(`","time":"`);
